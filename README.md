@@ -27,5 +27,5 @@
 * # PEOPLE INVOLVED
 
 * Kjellden Knutzen 
-* Marco Sarango
+* Marco Sarango marcosarango23@gmail.com
 * Kevin Guzman
