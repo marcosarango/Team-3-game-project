@@ -4,6 +4,7 @@ import arcade
 from scripts.pause import PauseView
 
 class GameView(arcade.View):
+    """Game view this is the main view it takes in the player ship that was chosen and you start playing the game"""
     def __init__(self, player):
         super().__init__()
         self.player_ship = player
@@ -21,6 +22,7 @@ class GameView(arcade.View):
         arcade.set_background_color(arcade.color.AMAZON)
 
     def on_draw(self):
+        """Draws all the sprites on the screen"""
         arcade.start_render()
         # Draw all the sprites.
         self.player_sprite.draw()
@@ -49,6 +51,7 @@ class GameView(arcade.View):
 
 
     def on_key_press(self, key, _modifiers):
+        #checks key press so the game know where the player wants to go.
         if key == arcade.key.ESCAPE:
             # pass self, the current view, to preserve this view's state
             pause = PauseView(self, GameView(self.player_ship))
@@ -63,6 +66,7 @@ class GameView(arcade.View):
 
 
     def on_key_release(self, key, _modifiers):
+        # checks to see if a key was released so it can stop moving the player.
         if key == arcade.key.LEFT:
             self.left = False
 

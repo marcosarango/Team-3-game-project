@@ -17,7 +17,7 @@ from scripts.menu import MenuView
 
 
 
-
+# the start of the program run this to run the game.
 def main():
     window = arcade.Window(constants.WIDTH, constants.HEIGHT, "Instruction and Game Over Views Example")
     menu = MenuView()
