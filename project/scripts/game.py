@@ -1,14 +1,21 @@
+
 from scripts import constants
 import arcade
 from scripts.pause import PauseView
+
 class GameView(arcade.View):
-    def __init__(self):
+    def __init__(self, player):
         super().__init__()
-        self.player_sprite = arcade.Sprite(":resources:images/animated_characters/female_person/femalePerson_idle.png",
-                                           constants.SPRITE_SCALING)
-        self.player_sprite.center_x = 50
-        self.player_sprite.center_y = 50
-        self.player_sprite.velocity = [3, 3]
+        self.player_ship = player
+        self.player_sprite = arcade.Sprite(self.player_ship.get_sprit(), constants.SPRITE_SCALING)
+        self.player_sprite.center_x = self.player_ship.get_ship_x()
+        self.player_sprite.center_y = self.player_ship.get_ship_y()
+         
+
+        self.right = False
+        self.left = False
+        
+        
 
     def on_show(self):
         arcade.set_background_color(arcade.color.AMAZON)
@@ -19,25 +26,45 @@ class GameView(arcade.View):
         self.player_sprite.draw()
 
         # Show tip to pause screen
-        arcade.draw_text("Press Esc. to pause",
-                         constants.WIDTH / 2,
-                         constants.HEIGHT - 100,
-                         arcade.color.BLACK,
-                         font_size=20,
-                         anchor_x="center")
+        arcade.draw_text("Press Esc. to pause",constants.WIDTH / 2, constants.HEIGHT - 100, arcade.color.BLACK, font_size=20, anchor_x="center")
 
     def on_update(self, delta_time):
         # Call update on all sprites
+
+        if self.player_sprite.left < 0:
+            self.player_sprite.left = 1
+        if self.player_sprite.right > constants.WIDTH:
+            self.player_sprite.right = constants.WIDTH - 1
+
+        if self.right == True:
+            self.player_sprite.center_x += self.player_ship.get_ship_speed() * delta_time
+
+
+        if self.left == True:
+            self.player_sprite.center_x -= self.player_ship.get_ship_speed() * delta_time
+            
         self.player_sprite.update()
 
-        # Bounce off the edges
-        if self.player_sprite.left < 0 or self.player_sprite.right > constants.WIDTH:
-            self.player_sprite.change_x *= -1
-        if self.player_sprite.bottom < 0 or self.player_sprite.top > constants.HEIGHT:
-            self.player_sprite.change_y *= -1
+
+
 
     def on_key_press(self, key, _modifiers):
         if key == arcade.key.ESCAPE:
             # pass self, the current view, to preserve this view's state
-            pause = PauseView(self, GameView())
+            pause = PauseView(self, GameView(self.player_ship))
             self.window.show_view(pause)
+
+        if key == arcade.key.LEFT:
+            self.left = True
+
+        if key == arcade.key.RIGHT:
+            self.right = True
+
+
+
+    def on_key_release(self, key, _modifiers):
+        if key == arcade.key.LEFT:
+            self.left = False
+
+        if key == arcade.key.RIGHT:
+            self.right = False

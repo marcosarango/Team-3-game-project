@@ -4,6 +4,7 @@ from scripts.game import GameView
 from scripts.character_selection import Character_selection
 
 
+
 class MenuView(arcade.View):
     def __init__(self):
         super().__init__()
