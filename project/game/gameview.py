@@ -70,6 +70,7 @@ class GameView(arcade.View):
         self.player_list.draw()
         self.bullet_list.draw()
         self.alian_ships.draw()
+        arcade.draw_text(f"Score: {self.score}",constants.SCREEN_WIDTH / 10 , constants.SCREEN_HEIGHT / 50, arcade.color.WHITE, font_size=20, anchor_x="center")
 
     def on_update(self, delta_time):
         
@@ -103,7 +104,7 @@ class GameView(arcade.View):
                 bullet.remove_from_sprite_lists()
 
             for alien in hit_list:
-                self.score += 10
+                self.score += alien.get_value()
                 alien.remove_from_sprite_lists()
 
             if bullet.top > constants.SCREEN_HEIGHT:

@@ -16,7 +16,7 @@ class Tesing_Alien(Entity):
         pass
             
 
-    def get_points(self):
+    def get_value(self):
         return self._score
 
 

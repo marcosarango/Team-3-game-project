@@ -9,7 +9,7 @@ class Player_Test_Ship(Ship):
         
         self.time_since_last_firing = 0.0 
         self._attack_speed = 0.5
-        self._ship_speed = 150
+        self._ship_speed = 250
         self._defence = 3
         self.right_movment = False
         self.left_movment = False
@@ -30,6 +30,7 @@ class Player_Test_Ship(Ship):
         if self.left_movment == True:
             self.center_x -= self._ship_speed * delta_time
 
+    
 
 
         
@@ -45,4 +46,4 @@ class Player_Test_Ship(Ship):
             self.shooting = status
         
 
-        
+    
