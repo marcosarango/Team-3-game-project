@@ -13,6 +13,10 @@ class Ship(Entity):
         self._ship_speed = 150
         self._defence = 3
         self.ship_scale = 0.5
+        self.shooting = False
+        self.right_movment = False
+        self.left_movment = False
+        self.bullet_list = arcade.SpriteList()
 
     def get_speed(self):
         # returns the ships speed
@@ -29,3 +33,18 @@ class Ship(Entity):
     def get_texture(self):
         # returns the texture of the ship
         return self._ship_texture
+
+    def action(self, ship_action, status):
+        # takes in input from the game and turns it into player actions
+        if ship_action == "right":
+            self.right_movment = status
+
+        if ship_action == "left":
+            self.left_movment = status
+
+        if ship_action == "shoot":
+            self.shooting = status
+        
+
+    def get_bullet_list(self):
+        return self.bullet_list

@@ -18,7 +18,7 @@ class GameView(arcade.View):
         self.player_list = None
         self.enemy_list = None
         self.bullet_list = None
-        self.menu_Background = "project\images\menu_background.jpg"
+        self.menu_Background = "project\images\Backgrounds\darkPurple.png"
         self.score = 0
 
         self.set_up(ship)
@@ -34,13 +34,15 @@ class GameView(arcade.View):
 
         # sets up the player sprites
         self.player_list = arcade.SpriteList()
-        self.bullet_list = arcade.SpriteList()
+        ########self.bullet_list = arcade.SpriteList()
 
         # creates the player 
         self.player = ship
         self.player.center_x = 450
         self.player.center_y = 100
         self.player_list.append(self.player)
+
+        self.bullet_list = self.player.get_bullet_list()
 
         # sets up the shooting timer for the ship that was picked
         self.shooting = False
@@ -52,11 +54,11 @@ class GameView(arcade.View):
         i = 0
         while i < 5:
 
-            self.alian = Tesing_Alien("project\images\pixel_ship_green_small.png",
-            scale= 1, 
+            self.alian = Tesing_Alien("project\images\enemy ships\enemyBlack1.png",
+            scale= 0.5, 
             alian_bullet_list= self.alian_bullet_list,
             time_between_firing= 15)
-            self.alian.center_y = random.randint(100, 600)
+            self.alian.center_y = random.randint(200, 600)
             self.alian.center_x = random.randint(100, 600)
             self.alian_ships.append(self.alian)
             i += 1
@@ -70,30 +72,14 @@ class GameView(arcade.View):
         self.player_list.draw()
         self.bullet_list.draw()
         self.alian_ships.draw()
-        arcade.draw_text(f"Score: {self.score}",constants.SCREEN_WIDTH / 10 , constants.SCREEN_HEIGHT / 50, arcade.color.WHITE, font_size=20, anchor_x="center")
+        arcade.draw_text(f"Score: {self.score}",10 , constants.SCREEN_HEIGHT / 50, arcade.color.WHITE, font_size=15, font_name = "Kenney Rocket")
 
     def on_update(self, delta_time):
         
         self.player_list.on_update(delta_time)
         self.player_list.update()
         self.bullet_list.update()
-
-
-        # checks to see if the player can shoot and if they can creates a bullet object
-        self.ship_attack_timer += 1 * delta_time
-
-        if self.shooting == True:
-            if self.ship_attack_timer > self.time_between_shooting:
-                for player in self.player_list:
-                    self.bullet = arcade.Sprite("project\images\pixel_laser_red.png", scale= 0.5)
-                    self.bullet.center_x = player.center_x
-                    self.bullet.bottom = player.top
-                    self.bullet.change_y = 20
-                    self.bullet_list.append(self.bullet)
-                self.ship_attack_timer = 0
-
         
-
         # checks to see if there was a collision
 
         for bullet in self.bullet_list:
@@ -119,8 +105,8 @@ class GameView(arcade.View):
             i = 0
             while i < 5:
 
-                alian = Tesing_Alien("project\images\pixel_ship_green_small.png",
-                scale= 1.0, 
+                alian = Tesing_Alien("project\images\enemy ships\enemyBlack1.png",
+                scale= 0.5, 
                 alian_bullet_list= self.alian_bullet_list,
                 time_between_firing= 10)
                 alian.center_y = random.randint(300, 600)
@@ -141,7 +127,8 @@ class GameView(arcade.View):
                 ship.action("right", True)
             
             if key == arcade.key.SPACE:
-                self.shooting = True
+                ship.action("shoot", True)
+                
         
 
     def on_key_release(self, key, _modifiers):
@@ -155,4 +142,5 @@ class GameView(arcade.View):
                 ship.action("right", False)
 
             if key == arcade.key.SPACE:
-                self.shooting = False
+                ship.action("shoot", False)
+                

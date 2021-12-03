@@ -1,4 +1,5 @@
 import arcade
+from arcade.text_pyglet import FontNameOrNames
 from game.player_text_ship import Player_Test_Ship
 from game import constants
 from game.gameview import GameView
@@ -18,9 +19,9 @@ class Character_Selection_View(arcade.View):
         arcade.start_render()
         arcade.draw_lrwh_rectangle_textured(0, 0, constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT, arcade.load_texture(self.menu_Background))
         arcade.draw_texture_rectangle(constants.SCREEN_WIDTH // 2, constants.SCREEN_HEIGHT // 2 + 50, 100, 100, arcade.load_texture(self.ship_list[self.ship_number].get_texture()))
-        arcade.draw_text(f"attack stat: {self.ship_list[self.ship_number].get_attack_speed()}",constants.SCREEN_WIDTH / 2,constants.SCREEN_HEIGHT / 2 - 30, arcade.color.BLACK, font_size=20, anchor_x="center")
-        arcade.draw_text(f"speed stat: {self.ship_list[self.ship_number].get_speed()}",constants.SCREEN_WIDTH / 2,constants.SCREEN_HEIGHT / 2 - 60, arcade.color.BLACK, font_size=20, anchor_x="center")
-        arcade.draw_text(f"speed stat: {self.ship_list[self.ship_number].get_defence()}",constants.SCREEN_WIDTH / 2,constants.SCREEN_HEIGHT / 2 - 90, arcade.color.BLACK, font_size=20, anchor_x="center")
+        arcade.draw_text(f"attack stat: {self.ship_list[self.ship_number].get_attack_speed()}",constants.SCREEN_WIDTH / 2,constants.SCREEN_HEIGHT / 2 - 30, arcade.color.BLACK, font_size=15, anchor_x="center", font_name = "Kenney Rocket")
+        arcade.draw_text(f"speed stat: {self.ship_list[self.ship_number].get_speed()}",constants.SCREEN_WIDTH / 2,constants.SCREEN_HEIGHT / 2 - 60, arcade.color.BLACK, font_size=15, anchor_x="center", font_name = "Kenney Rocket")
+        arcade.draw_text(f"speed stat: {self.ship_list[self.ship_number].get_defence()}",constants.SCREEN_WIDTH / 2,constants.SCREEN_HEIGHT / 2 - 90, arcade.color.BLACK, font_size=15, anchor_x="center", font_name = "Kenney Rocket")
 
 
     def on_key_press(self, key, _modifiers):
