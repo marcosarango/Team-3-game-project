@@ -11,7 +11,7 @@ class Player_Test_Ship2(Ship):
         self.time_since_last_firing = 1.0 
         self._attack_speed = 0.2
         self._ship_speed = 350
-        self._defence = 4
+        self._defence = 3
         self.laser_sound = load_sound("project\sounds\sfx_laser1.ogg")
         
 

@@ -34,6 +34,8 @@ class GameView(arcade.View):
 
         # sets up the player sprites
         self.player_list = arcade.SpriteList()
+
+      
         ########self.bullet_list = arcade.SpriteList()
 
         # creates the player 
@@ -42,7 +44,16 @@ class GameView(arcade.View):
         self.player.center_y = 100
         self.player_list.append(self.player)
 
+
         self.bullet_list = self.player.get_bullet_list()
+
+
+
+       
+
+        
+
+
 
         # sets up the shooting timer for the ship that was picked
         self.shooting = False
