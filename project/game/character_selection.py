@@ -14,7 +14,7 @@ class Character_Selection_View(arcade.View):
 
     
         self.ship_list = [self.test_ship]
-        self.ship_list = [self.test_ship2]
+        self.ship_list2 = [self.test_ship2]
         
 
     def on_draw(self):
@@ -25,6 +25,7 @@ class Character_Selection_View(arcade.View):
         arcade.draw_text(f"attack stat: {self.ship_list[self.ship_number].get_attack_speed()}",constants.SCREEN_WIDTH / 2,constants.SCREEN_HEIGHT / 2 - 30, arcade.color.BLACK, font_size=15, anchor_x="center", font_name = "Kenney Rocket")
         arcade.draw_text(f"speed stat: {self.ship_list[self.ship_number].get_speed()}",constants.SCREEN_WIDTH / 2,constants.SCREEN_HEIGHT / 2 - 60, arcade.color.BLACK, font_size=15, anchor_x="center", font_name = "Kenney Rocket")
         arcade.draw_text(f"speed stat: {self.ship_list[self.ship_number].get_defence()}",constants.SCREEN_WIDTH / 2,constants.SCREEN_HEIGHT / 2 - 90, arcade.color.BLACK, font_size=15, anchor_x="center", font_name = "Kenney Rocket")
+        
 
 
     def on_key_press(self, key, _modifiers):
